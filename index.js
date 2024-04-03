@@ -14,6 +14,8 @@ app.get('/', (req, res, next) => {
 
 app.use('/test', testRoutes)
 
+
+// connect database
 mongoose
     .connect(mongodbURL)
     .then(() => {
