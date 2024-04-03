@@ -44,4 +44,19 @@ router.get('/', async (req, res, next) => {
     }
 })
 
+// route for get one value from database by id 
+router.get('/:id', async (req, res, next) => {
+    try {
+        const { id } = req.params
+
+        const test = await TEST.findById(id)
+
+        res.status(200).json(test)
+        
+    } catch (error) {
+        console.log(error.message);
+        res.status(505).send({ message: error.message })
+    }
+})
+
 export default router
