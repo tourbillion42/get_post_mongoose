@@ -59,4 +59,25 @@ router.get('/:id', async (req, res, next) => {
     }
 })
 
+// route for delete value 
+router.delete('/:id', async (req, res, next) => {
+    try {
+        const { id } = req.params
+
+        const result = await TEST.findByIdAndDelete(id)
+
+        if (!result) {
+            res.status(404).json({ message: "value not found"})
+        }
+
+        res.status(200).send({ message: "value deleted successfully"})
+        
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).send({ message: error.message })
+    }
+})
+
+
+
 export default router
